@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.barreto.kaligraphy.StartActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kaligrafy"
+        android:textSize="30pt"
+        android:layout_marginTop="27dp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aprenda Kanji escrevendo"
+        android:textSize="8pt"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView3"
+        android:layout_marginBottom="10sp"/>
+
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:text="Iniciar"
+        android:id="@+id/bt_iniciar" />
+
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="cadastre-se"
+        android:id="@+id/bt_cadastrar"
+        android:layout_below="@+id/bt_iniciar"
+        android:layout_alignStart="@+id/bt_iniciar" />
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="Experimente"
+        android:layout_below="@+id/bt_cadastrar"
+        android:layout_alignEnd="@+id/bt_cadastrar"
+        android:id="@+id/bt_experimente" />
+
+    <ImageView
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/learn"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/bt_experimente"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
