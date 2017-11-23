@@ -27,6 +27,7 @@
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,9 +36,12 @@
             android:label="Entrar" />
         <activity
             android:name=".CadastrarActivity"
-            android:label="Csdastrar" >
-        </activity>
-
+            android:label="Cadastrar" />
+        <activity android:name=".HomeNoUserActivity" />
+        <activity
+            android:name=".InicialAllActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
