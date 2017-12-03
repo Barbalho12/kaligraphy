@@ -52,25 +52,25 @@ public class TouchEventView extends View {
         paint.setColor(Color.BLUE);
 
 
-
-        canvas.drawCircle(240, 60, 20,  paint);
-        canvas.drawCircle(180, 220, 20,  paint);
-        canvas.drawCircle(105, 350, 20,  paint);
-        canvas.drawCircle(20, 450, 20,  paint);
-
-        canvas.drawCircle(195, 280, 20,  paint);
-        canvas.drawCircle(300, 390, 20,  paint);
-        canvas.drawCircle(380, 470, 20,  paint);
-        canvas.drawCircle(490, 500, 20,  paint);
-
-        paint.setColor(Color.GREEN);
-        canvas.drawLine(240, 60, 180, 220, paint);
-        canvas.drawLine(180, 220, 105, 350, paint);
-        canvas.drawLine(105, 350, 20, 450, paint);
-
-        canvas.drawLine(195, 280, 300, 390, paint);
-        canvas.drawLine(300, 390, 380, 470, paint);
-        canvas.drawLine(380, 470, 490, 500, paint);
+//
+//        canvas.drawCircle(240, 60, 20,  paint);
+//        canvas.drawCircle(180, 220, 20,  paint);
+//        canvas.drawCircle(105, 350, 20,  paint);
+//        canvas.drawCircle(20, 450, 20,  paint);
+//
+//        canvas.drawCircle(195, 280, 20,  paint);
+//        canvas.drawCircle(300, 390, 20,  paint);
+//        canvas.drawCircle(380, 470, 20,  paint);
+//        canvas.drawCircle(490, 500, 20,  paint);
+//
+//        paint.setColor(Color.GREEN);
+//        canvas.drawLine(240, 60, 180, 220, paint);
+//        canvas.drawLine(180, 220, 105, 350, paint);
+//        canvas.drawLine(105, 350, 20, 450, paint);
+//
+//        canvas.drawLine(195, 280, 300, 390, paint);
+//        canvas.drawLine(300, 390, 380, 470, paint);
+//        canvas.drawLine(380, 470, 490, 500, paint);
     }
 
 
@@ -81,7 +81,7 @@ public class TouchEventView extends View {
         float eventY = event.getY();
 
         if(tv != null){
-            tv.setText("X: " + eventX/512+", Y: "+eventY/512);
+//            tv.setText("X: " + eventX/512+", Y: "+eventY/512);
         }
 
 

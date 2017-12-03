@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         int width = iv_source.getDrawable().getIntrinsicWidth();
         int height = iv_source.getDrawable().getIntrinsicHeight();
 
-        tv_information.setText("Height: "+height+", Width: "+width);
+//        tv_information.setText("Height: "+height+", Width: "+width);
 
 
         iv_source.setOnTouchListener(new View.OnTouchListener() {
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 float eventY = event.getY();
 
 
-                tv_information.setText("X: " + eventX+", Y: "+eventY);
+//                tv_information.setText("X: " + eventX+", Y: "+eventY);
 
                 return true;
             }
