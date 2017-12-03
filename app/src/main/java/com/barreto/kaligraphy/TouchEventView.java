@@ -1,14 +1,21 @@
 package com.barreto.kaligraphy;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class TouchEventView extends View {
     private Paint paint = new Paint();
@@ -37,10 +44,14 @@ public class TouchEventView extends View {
 //        });
     }
 
-    TextView tv = null;
+    ImageView iv_source = null;
+    ArrayList<HitDraw> points_toque;
 
-    public void setTv(TextView tv){
-        this.tv = tv;
+    public void setIV(ImageView iv_source){
+        this.iv_source = iv_source;
+    }
+    public void setPointsToque(ArrayList<HitDraw> points_toque){
+        this.points_toque = points_toque;
     }
 
 
@@ -49,8 +60,12 @@ public class TouchEventView extends View {
 
         paint.setColor(Color.RED);
         canvas.drawPath(path, paint);
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.RED);
 
+
+        for(HitDraw hd : points_toque){
+            canvas.drawCircle(hd.getCx(), hd.getCy(), hd.getRadius(),  paint);
+        }
 
 //
 //        canvas.drawCircle(240, 60, 20,  paint);
@@ -74,16 +89,34 @@ public class TouchEventView extends View {
     }
 
 
+    int sequence = 0;
+    int points = 0;
+    float score = 0;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
 
-        if(tv != null){
+        if(iv_source != null){
 //            tv.setText("X: " + eventX/512+", Y: "+eventY/512);
-        }
+            for(HitDraw hd : points_toque){
+                if(hd.hit(eventX,eventY)){
+                    if(sequence == points_toque.indexOf(hd)){
+                        points++;
+                        score = points/points_toque.size();
+                    }
+                    sequence++;
 
+
+                    iv_source.buildDrawingCache();
+                    Bitmap combine_image = hd.mergeToPin(iv_source.getDrawingCache(),hd.getImage());
+                    iv_source.setImageBitmap(combine_image);
+                    iv_source.buildDrawingCache();
+                    break;
+                }
+            }
+        }
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
