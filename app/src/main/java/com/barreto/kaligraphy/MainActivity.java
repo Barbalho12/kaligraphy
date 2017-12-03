@@ -1,5 +1,8 @@
 package com.barreto.kaligraphy;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,6 +69,45 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        Bitmap bm1 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_1);
+        Bitmap bm2 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_2);
+        Bitmap bm3 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_3);
+        Bitmap bm4 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_4);
+        Bitmap bm5 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_5);
+        Bitmap bm6 = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.together_6);
+
+        ArrayList<Bitmap> bmps = new ArrayList<>();
+        bmps.add(bm1);
+        bmps.add(bm2);
+        bmps.add(bm3);
+        bmps.add(bm4);
+        bmps.add(bm5);
+        bmps.add(bm6);
+
+        Bitmap bm_temp = bm1;
+        for(Bitmap bm : bmps){
+            if(!bm.equals(bmps))
+                bm_temp = mergeToPin(bm_temp, bm);
+        }
+        iv_source.setImageBitmap(bm_temp);
+    }
+
+    public static Bitmap mergeToPin(Bitmap back, Bitmap front) {
+        Bitmap result = Bitmap.createBitmap(back.getWidth(), back.getHeight(), back.getConfig());
+        Canvas canvas = new Canvas(result);
+        int widthBack = back.getWidth();
+        int widthFront = front.getWidth();
+        float move = (widthBack - widthFront) / 2;
+        canvas.drawBitmap(back, 0f, 0f, null);
+        canvas.drawBitmap(front, move, move, null);
+        return result;
     }
 
 //    @Override

@@ -70,50 +70,50 @@
                 android:background="@drawable/border_image"
                 />
 
-            <ImageView
-                android:id="@+id/iv_source_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_1"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_1"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
 
-            <ImageView
-                android:id="@+id/iv_source_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_2"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_2"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
 
-            <ImageView
-                android:id="@+id/iv_source_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_3"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
-            <ImageView
-                android:id="@+id/iv_source_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_4"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
-            <ImageView
-                android:id="@+id/iv_source_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_5"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
-            <ImageView
-                android:id="@+id/iv_source_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/together_6"
-                android:background="@drawable/border_image"
-                android:alpha=".3"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_3"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_4"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_4"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_5"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_5"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_source_6"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/together_6"-->
+                <!--android:background="@drawable/border_image"-->
+                <!--android:alpha=".3"/>-->
 
             <com.barreto.kaligraphy.TouchEventView
                 android:layout_width="wrap_content"

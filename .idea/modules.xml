@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Barreto\AndroidStudioProjects\kaligraphy\Kaligraphy.iml" filepath="C:\Users\Barreto\AndroidStudioProjects\kaligraphy\Kaligraphy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Barreto\AndroidStudioProjects\kaligraphy\app\app.iml" filepath="C:\Users\Barreto\AndroidStudioProjects\kaligraphy\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kaligraphy.iml" filepath="$PROJECT_DIR$/kaligraphy.iml" />
     </modules>
   </component>
