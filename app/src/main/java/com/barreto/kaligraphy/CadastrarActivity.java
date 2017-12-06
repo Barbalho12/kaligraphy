@@ -39,10 +39,10 @@ public class CadastrarActivity extends AppCompatActivity {
         bt_cad_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nome = String.valueOf(tv_cad_nome.getText());
-                String email = String.valueOf(tv_cad_nome.getText());
-                String senha = String.valueOf(tv_cad_nome.getText());
-                String senha_rep = String.valueOf(tv_cad_nome.getText());
+                String nome = tv_cad_nome.getText().toString();
+                String email = tv_cad_email.getText().toString();
+                String senha = tv_cad_password.getText().toString();
+                String senha_rep = tv_cad_password_confirm.getText().toString();
                 if(senha.equals(senha_rep)){
                     boolean sucess = userManager.addUser(new User(nome,email,senha), getApplicationContext());
                     if(sucess){

@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity /*implements LoaderCallback
 //                attemptLogin();
                 String email = mEmailView.getText().toString();
                 String senha = mPasswordView.getText().toString();
-                boolean sucess = userManager.requestUser(email,senha );
+                boolean sucess = userManager.requestUser(getApplicationContext(), email,senha );
                 if(sucess){
                     Intent intent = new Intent(getApplicationContext(), InicialAllActivity.class);
                     startActivity(intent);

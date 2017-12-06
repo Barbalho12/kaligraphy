@@ -43,6 +43,7 @@ public class UserManager implements Serializable {
         if(!users.contains(user)){
             users.add(user);
             activeUser = user;
+            Log.v(TAG, user.getNome()+" Salvo ");
             boolean sucess = save(context, fileName, this);
             return sucess;
         }
@@ -58,7 +59,7 @@ public class UserManager implements Serializable {
             this.activeUser = userManager.getActiveUser();
             is.close();
             fis.close();
-            Log.v(TAG, "Lido");
+            Log.v(TAG, "Lido ");
             return userManager;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -78,6 +79,7 @@ public class UserManager implements Serializable {
         try {
             FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
+//            Log.v(TAG, userManager.getActiveUser().getNome()+" Salvo ");
             os.writeObject(userManager);
             os.close();
             fos.close();
@@ -115,11 +117,12 @@ public class UserManager implements Serializable {
         this.activeUser = activeUser;
     }
 
-    public boolean requestUser(String email, String senha) {
+    public boolean requestUser(Context context, String email, String senha) {
         for(User user : users){
             Log.v(TAG, email+"=="+user.getEmail()+", "+senha+"=="+user.getSenha());
             if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
                 activeUser = user;
+                save(context, fileName, this);
                 return true;
             }
         }

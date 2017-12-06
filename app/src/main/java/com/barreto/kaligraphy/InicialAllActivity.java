@@ -1,8 +1,10 @@
 package com.barreto.kaligraphy;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +18,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +36,8 @@ import com.barreto.kaligraphy.model.UserManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class InicialAllActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
@@ -40,12 +45,14 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
     private ViewPager mViewPager;
     private UserManager userManager;
 
+    TextView tv_user_name_nav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all);
 
-        userManager = new UserManager(getApplicationContext());
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,8 +66,14 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        userManager = new UserManager(getApplicationContext());
+        View header = navigationView.getHeaderView(0);
+        tv_user_name_nav = (TextView) header.findViewById(R.id.tv_user_name_nav);
+        if(userManager.getActiveUser()!=null && tv_user_name_nav != null) {
+            Log.v(TAG, userManager.getActiveUser().getNome());
 
-
+            tv_user_name_nav.setText(userManager.getActiveUser().getNome());
+        }
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -72,13 +85,6 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         tabLayout.setupWithViewPager(mViewPager);
 
         ListView listview = (ListView) findViewById(R.id.listview);
-
-
-//        String[] dados = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
-//                "Honeycomb", "Ice Cream Sandwich", "Jelly Bean",
-//                "KitKat", "Lollipop", "Marshmallow", "Nougat" };
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dados);
 
         List<ItemList> list_itens = new ArrayList<>();
         list_itens.add(new ItemList(1,"Tutorial","2","10","02pts"));
@@ -248,6 +254,9 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
 //        return super.onOptionsItemSelected(item);
 //    }
 
+//    private static final int REQ_SELECT_PHOTO = 1;
+//    private static final int REQ_START_SHARE = 2;
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -257,6 +266,12 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.nav_ajuda) {
 
         } else if (id == R.id.nav_share) {
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Estou ficando cada vez melhor! Já tenho 10 pontos e sou iniciante no Kaligraphy! :)");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         } else if (id == R.id.nav_sair) {
 //            finish();
@@ -270,5 +285,17 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+//        if(requestCode == REQ_SELECT_PHOTO) {
+//            if(resultCode == RESULT_OK) {
+//
+//            }
+//        }
     }
 }
