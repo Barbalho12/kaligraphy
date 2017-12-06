@@ -1,5 +1,7 @@
 package com.barreto.kaligraphy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -26,6 +28,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.barreto.kaligraphy.model.UserManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +38,14 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all);
+
+        userManager = new UserManager(getApplicationContext());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -107,6 +114,26 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
+    void alert(){
+        AlertDialog alertDialog = new AlertDialog.Builder(InicialAllActivity.this).create();
+        alertDialog.setTitle("Alerta");
+        alertDialog.setMessage("Confirme para sair");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sair",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finishAffinity();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -115,7 +142,8 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sair) {
+            alert();
             return true;
         }
 
@@ -232,8 +260,11 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
 
         } else if (id == R.id.nav_sair) {
 //            finish();
-            finishAffinity();
-
+//            finishAffinity();
+            userManager.setInActiveUser(getApplicationContext());
+            Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
