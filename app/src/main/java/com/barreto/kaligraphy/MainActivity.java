@@ -1,5 +1,8 @@
 package com.barreto.kaligraphy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,6 +32,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button bt_parar;
@@ -36,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     private int fase = 0;
 
+    private FaseFragment4 faseFragment4;
+    private FaseFragment3 faseFragment3;
+    private FaseFragment2 faseFragment2;
     private FaseFragment1 faseFragment1;
     private FaseFragment0 faseFragment0;
+
+    float score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
         faseFragment0 = new FaseFragment0();
         faseFragment1 = new FaseFragment1();
+        faseFragment2 = new FaseFragment2();
+        faseFragment3 = new FaseFragment3();
+        faseFragment4 = new FaseFragment4();
 
         final FragmentManager manager = getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container, faseFragment0);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
         transaction.commit();
 
         bt_voltar = (Button) findViewById(R.id.bt_voltar) ;
@@ -72,6 +86,21 @@ public class MainActivity extends AppCompatActivity {
                         transaction.commit();
                         fase--;
                         break;
+                    case 2:
+                        transaction.replace(R.id.container, faseFragment1);
+                        transaction.commit();
+                        fase--;
+                        break;
+                    case 3:
+                        transaction.replace(R.id.container, faseFragment2);
+                        transaction.commit();
+                        fase--;
+                        break;
+                    case 4:
+                        transaction.replace(R.id.container, faseFragment3);
+                        transaction.commit();
+                        fase--;
+                        break;
                     default:
                         //TODO
                         break;
@@ -82,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         bt_parar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                alert();
             }
         });
 
@@ -93,21 +122,70 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (fase){
                     case 0:
+                        score += 1;
                         transaction.replace(R.id.container, faseFragment1);
-                        transaction.addToBackStack(null);
+//                        transaction.addToBackStack(null);
                         transaction.commit();
                         fase++;
                         break;
                     case 1:
-                        //TODO
+                        score += faseFragment1.getScore();
+                        transaction.replace(R.id.container, faseFragment2);
+                        transaction.commit();
+                        fase++;
+                        break;
+                    case 2:
+                        score += faseFragment2.getScore();
+                        transaction.replace(R.id.container, faseFragment3);
+                        transaction.commit();
+                        fase++;
+                        break;
+                    case 3:
+                        score += faseFragment3.getScore();
+                        transaction.replace(R.id.container, faseFragment4);
+                        transaction.commit();
+                        fase++;
+                        break;
+                    case 4:
+                        score += faseFragment4.getScore();
+                        Intent intent = new Intent(MainActivity.this, ExercicioResult.class);
+
+                        startActivity(intent);
+                        finish();
+//                        transaction.replace(R.id.container, faseFragment3);
+//                        transaction.commit();
+//                        fase++;
                         break;
                     default:
                         //TODO
                         break;
                 }
 
+                Log.v(TAG, "Score Final: "+score);
+
             }
         });
+    }
+
+    void alert(){
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Alerta");
+        alertDialog.setMessage("Seu progresso será perdido, confirme para SAIR:");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sair",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+                        finish();
+//                        finishAffinity();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     @Override

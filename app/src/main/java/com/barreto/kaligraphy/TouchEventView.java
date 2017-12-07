@@ -2,25 +2,39 @@ package com.barreto.kaligraphy;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class TouchEventView extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
+    boolean flag_show_points;
     Context context;
+
+    public TouchEventView(final Context context, AttributeSet attrs, boolean flag_show_points) {
+        super(context, attrs);
+        this.context = context;
+
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(10f);
+        paint.setColor(Color.GREEN);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+
+        this.flag_show_points = flag_show_points;
+    }
 
     public TouchEventView(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,20 +42,12 @@ public class TouchEventView extends View {
 
         paint.setAntiAlias(true);
         paint.setStrokeWidth(10f);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GREEN);
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
 
-
-//        setOnLongClickListener(new OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                paint.reset();
-//                Toast.makeText(context, "Long Clicked", Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//        });
+        flag_show_points = true;
     }
 
     ImageView iv_source = null;
@@ -58,14 +64,16 @@ public class TouchEventView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GREEN);
         canvas.drawPath(path, paint);
         paint.setColor(Color.RED);
 
-
-        for(HitDraw hd : points_toque){
-            canvas.drawCircle(hd.getCx(), hd.getCy(), hd.getRadius(),  paint);
+        if(flag_show_points) {
+            for (HitDraw hd : points_toque) {
+                canvas.drawCircle(hd.getCx(), hd.getCy(), hd.getRadius(), paint);
+            }
         }
+        paint.setColor(Color.GREEN);
 
 //
 //        canvas.drawCircle(240, 60, 20,  paint);
@@ -99,20 +107,21 @@ public class TouchEventView extends View {
         float eventY = event.getY();
 
         if(iv_source != null){
-//            tv.setText("X: " + eventX/512+", Y: "+eventY/512);
             for(HitDraw hd : points_toque){
                 if(hd.hit(eventX,eventY)){
+
                     if(sequence == points_toque.indexOf(hd)){
                         points++;
-                        score = points/points_toque.size();
+                        score = points;
+//                        Log.v(TAG, "score: "+score);
                     }
-                    sequence++;
 
-
-                    iv_source.buildDrawingCache();
-                    Bitmap combine_image = hd.mergeToPin(iv_source.getDrawingCache(),hd.getImage());
-                    iv_source.setImageBitmap(combine_image);
-                    iv_source.buildDrawingCache();
+                    if( hd.getImage() != null){
+                        iv_source.buildDrawingCache();
+                        Bitmap combine_image = hd.mergeToPin(iv_source.getDrawingCache(),hd.getImage());
+                        iv_source.setImageBitmap(combine_image);
+                        iv_source.buildDrawingCache();
+                    }
                     break;
                 }
             }
@@ -121,6 +130,8 @@ public class TouchEventView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(eventX, eventY);
+                sequence++;
+                Log.v(TAG, "sequence: "+sequence);
                 return true;
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(eventX, eventY);
@@ -134,5 +145,9 @@ public class TouchEventView extends View {
         // Schedules a repaint.
         invalidate();
         return true;
+    }
+
+    public float getScore(){
+        return score;
     }
 }

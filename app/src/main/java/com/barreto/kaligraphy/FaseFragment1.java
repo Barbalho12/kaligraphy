@@ -19,6 +19,10 @@ public class FaseFragment1 extends Fragment {
     ImageView iv_source_1;
     ArrayList<HitDraw> points_toque;
 
+    public float getScore(){
+        return tev_animation_1.getScore();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
