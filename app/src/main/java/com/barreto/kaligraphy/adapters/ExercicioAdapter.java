@@ -1,11 +1,12 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.adapters;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.barreto.kaligraphy.R;
 
 import java.util.List;
 

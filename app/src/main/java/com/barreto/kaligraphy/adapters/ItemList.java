@@ -1,4 +1,4 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.adapters;
 
 /**
  * Created by Barreto on 22/11/2017.

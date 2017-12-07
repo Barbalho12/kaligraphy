@@ -1,12 +1,15 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.barreto.kaligraphy.views.HitDraw;
+import com.barreto.kaligraphy.R;
+import com.barreto.kaligraphy.views.TouchEventView;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class FaseFragment4 extends Fragment {
         tv_information_4 = (TextView) view.findViewById(R.id.tv_information_4);
 //        iv_source_4 = (ImageView) view.findViewById(R.id.iv_source_4);
         tev_animation_4 = (TouchEventView) view.findViewById(R.id.tev_animation_4);
-        tev_animation_4.flag_show_points = false;
+        tev_animation_4.setFlag_show_points(false);
 
 //        Bitmap bm1 = BitmapFactory.decodeResource(view.getResources(),
 //                R.drawable.together_1);

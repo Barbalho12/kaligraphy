@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,7 +26,7 @@
                 <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity">
+        <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,17 +34,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="Entrar" />
         <activity
-            android:name=".CadastrarActivity"
+            android:name=".activities.CadastrarActivity"
             android:label="Cadastrar" />
-        <activity android:name=".HomeNoUserActivity" />
+        <activity android:name=".activities.HomeNoUserActivity" />
         <activity
-            android:name=".InicialAllActivity"
+            android:name=".activities.InicialAllActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ExercicioResult"></activity>
+        <activity android:name=".activities.ExercicioResult"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.views;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

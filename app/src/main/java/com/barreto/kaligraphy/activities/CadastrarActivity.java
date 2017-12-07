@@ -1,4 +1,4 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.barreto.kaligraphy.R;
 import com.barreto.kaligraphy.model.User;
 import com.barreto.kaligraphy.model.UserManager;
 

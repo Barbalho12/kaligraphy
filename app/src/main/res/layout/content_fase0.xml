@@ -7,7 +7,7 @@
 
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.barreto.kaligraphy.MainActivity"
+    tools:context="com.barreto.kaligraphy.activities.MainActivity"
    >
 
     <LinearLayout

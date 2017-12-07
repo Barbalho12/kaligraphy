@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.barreto.kaligraphy.InicialAllActivity">
+    tools:context="com.barreto.kaligraphy.activities.InicialAllActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

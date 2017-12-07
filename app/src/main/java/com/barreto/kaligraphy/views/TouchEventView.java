@@ -1,4 +1,4 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -149,5 +149,9 @@ public class TouchEventView extends View {
 
     public float getScore(){
         return score;
+    }
+
+    public void setFlag_show_points(boolean flag_show_points) {
+        this.flag_show_points = flag_show_points;
     }
 }

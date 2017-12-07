@@ -1,4 +1,4 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.barreto.kaligraphy.R;
 
 public class HomeNoUserActivity extends AppCompatActivity {
 

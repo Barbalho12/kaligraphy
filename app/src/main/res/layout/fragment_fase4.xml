@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.barreto.kaligraphy.FaseFragment4">
+    tools:context="com.barreto.kaligraphy.fragments.FaseFragment4">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context="com.barreto.kaligraphy.MainActivity">
+        tools:context="com.barreto.kaligraphy.activities.MainActivity">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                     <!--android:background="@drawable/border_image"-->
                     <!--/>-->
 
-                <com.barreto.kaligraphy.TouchEventView
+                <com.barreto.kaligraphy.views.TouchEventView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tev_animation_4"

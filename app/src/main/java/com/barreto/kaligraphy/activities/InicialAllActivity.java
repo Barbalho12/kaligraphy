@@ -1,10 +1,8 @@
-package com.barreto.kaligraphy;
+package com.barreto.kaligraphy.activities;
 
 import android.app.AlertDialog;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -26,11 +24,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.barreto.kaligraphy.adapters.ItemList;
+import com.barreto.kaligraphy.R;
+import com.barreto.kaligraphy.adapters.ExercicioAdapter;
 import com.barreto.kaligraphy.model.UserManager;
 
 import java.util.ArrayList;

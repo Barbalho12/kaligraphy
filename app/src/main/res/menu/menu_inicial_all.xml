@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.barreto.kaligraphy.InicialAllActivity">
+    tools:context="com.barreto.kaligraphy.activities.InicialAllActivity">
     <item
         android:id="@+id/action_sair"
         android:orderInCategory="100"
