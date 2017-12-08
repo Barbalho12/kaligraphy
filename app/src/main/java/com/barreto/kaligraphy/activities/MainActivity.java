@@ -20,6 +20,7 @@ import com.barreto.kaligraphy.fragments.FaseFragment1;
 import com.barreto.kaligraphy.fragments.FaseFragment2;
 import com.barreto.kaligraphy.fragments.FaseFragment3;
 import com.barreto.kaligraphy.fragments.FaseFragment4;
+import com.barreto.kaligraphy.model.UserManager;
 
 import static android.content.ContentValues.TAG;
 
@@ -39,12 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     float score = 0;
 
+    private UserManager userManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        userManager = new UserManager(getApplicationContext());
 
         faseFragment0 = new FaseFragment0();
         faseFragment1 = new FaseFragment1();
@@ -137,13 +142,24 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         score += faseFragment4.getScore();
-                        Intent intent = new Intent(MainActivity.this, ExercicioResult.class);
 
-                        startActivity(intent);
-                        finish();
-//                        transaction.replace(R.id.container, faseFragment3);
-//                        transaction.commit();
-//                        fase++;
+                        if(userManager.getActiveUser() == null){
+                            Intent intent = new Intent(MainActivity.this, HomeNoUserActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent = new Intent(MainActivity.this, ExercicioResult.class);
+
+                            userManager.getActiveUser().setPontuacao(score);
+                            userManager.getActiveUser().addExercicios_realizados(0);
+                            userManager.getActiveUser().addExercicios_vizualizados(0);
+                            userManager.getActiveUser().addKnjiVisto();
+                            userManager.save( getApplicationContext());
+                            startActivity(intent);
+                            finish();
+                        }
+
+
                         break;
                     default:
                         //TODO

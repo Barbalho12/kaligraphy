@@ -1,8 +1,10 @@
 package com.barreto.kaligraphy.activities;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -44,7 +46,10 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
     private ViewPager mViewPager;
     private UserManager userManager;
 
+    private NavigationView navigationView;
+
     TextView tv_user_name_nav;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +67,29 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         userManager = new UserManager(getApplicationContext());
         View header = navigationView.getHeaderView(0);
         tv_user_name_nav = (TextView) header.findViewById(R.id.tv_user_name_nav);
+
+//        exercicios_realizados
+//        exercicios_vizualizados
+//        kanjis_vistos
+//
+
+        if(userManager.getActiveUser()!=null){
+            navigationView.getMenu().getItem(0).setTitle("Exercícios Realizados: "+userManager.getActiveUser().getNumberExercRealizados());
+            navigationView.getMenu().getItem(1).setTitle("Exercícios vizualizados: "+userManager.getActiveUser().getNumberExercVistos());
+            navigationView.getMenu().getItem(2).setTitle("Kanjis Vistos: "+userManager.getActiveUser().getKanjis_vistos());
+        }else{
+            navigationView.getMenu().getItem(0).setTitle("Exercícios Realizados: x");
+            navigationView.getMenu().getItem(1).setTitle("Exercícios vizualizados: x");
+            navigationView.getMenu().getItem(2).setTitle("Kanjis Vistos: x");
+        }
+
+
         if(userManager.getActiveUser()!=null && tv_user_name_nav != null) {
             Log.v(TAG, userManager.getActiveUser().getNome());
 
@@ -85,8 +107,15 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
 
         ListView listview = (ListView) findViewById(R.id.listview);
 
+        String points = "0";
+
+        if(userManager.getActiveUser()!=null){
+            points = String.valueOf( (int) userManager.getActiveUser().getPontuacao());
+
+        }
+
         List<ItemList> list_itens = new ArrayList<>();
-        list_itens.add(new ItemList(1,"Tutorial","2","10","02pts"));
+        list_itens.add(new ItemList(1,"Tutorial", points,"10","02pts"));
         list_itens.add(new ItemList(2,"Exercício Inicial","0","10","09pts"));
         list_itens.add(new ItemList(3,"Kanjis Iniciais 1","0","22","18pts"));
         list_itens.add(new ItemList(4,"Kanjis iniciais 2","0","35","22pts"));
@@ -290,6 +319,10 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+
+//        navigationView.getMenu().getItem(0).setTitle("Exercícios Realizados: "+userManager.getActiveUser().getNumberExercRealizados());
+//        navigationView.getMenu().getItem(1).setTitle("Exercícios vizualizados: "+userManager.getActiveUser().getNumberExercVistos());
+//        navigationView.getMenu().getItem(2).setTitle("Kanjis Vistos: "+userManager.getActiveUser().getKanjis_vistos());
 
 //        if(requestCode == REQ_SELECT_PHOTO) {
 //            if(resultCode == RESULT_OK) {

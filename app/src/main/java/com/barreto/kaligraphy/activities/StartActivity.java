@@ -22,19 +22,14 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         verifySession();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-
-
 
         bt_iniciar = (Button) findViewById(R.id.bt_iniciar);
         bt_cadastrar = (Button) findViewById(R.id.bt_cadastrar);
@@ -64,7 +59,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 }

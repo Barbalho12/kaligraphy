@@ -18,7 +18,6 @@ public class FaseFragment3 extends Fragment {
 
     TouchEventView tev_animation_3;
     TextView tv_information_3;
-    ImageView iv_source_3;
     ArrayList<HitDraw> points_toque;
 
     @Override
@@ -27,21 +26,9 @@ public class FaseFragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fase3, container, false);
 
         tv_information_3 = (TextView) view.findViewById(R.id.tv_information_3);
-//        iv_source_3 = (ImageView) view.findViewById(R.id.iv_source_1);
         tev_animation_3 = (TouchEventView) view.findViewById(R.id.tev_animation_3);
 
-//        Bitmap bm1 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_1);
-//        Bitmap bm2 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_2);
-//        Bitmap bm3 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_3);
-//        Bitmap bm4 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_4);
-//        Bitmap bm5 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_5);
-//        Bitmap bm6 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_6);
+
         points_toque = new ArrayList<>();
 
         points_toque.add(new HitDraw(100, 480, 15, null));
@@ -58,7 +45,6 @@ public class FaseFragment3 extends Fragment {
         points_toque.add(new HitDraw(460, 285, 15, null));
 
         points_toque.add(new HitDraw(120, 190, 15, null));
-//        points_toque.add(new HitDraw(250, 175, 15, null));
         points_toque.add(new HitDraw(360, 155, 15, null));
 
         points_toque.add(new HitDraw(200, 100, 15, null));
@@ -67,7 +53,6 @@ public class FaseFragment3 extends Fragment {
         points_toque.add(new HitDraw(310, 60, 15, null));
         points_toque.add(new HitDraw(300, 250, 15, null));
 
-//        tev_animation_3.setIV(iv_source_3);
         tev_animation_3.setPointsToque(points_toque);
 
         return view;

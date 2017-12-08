@@ -17,7 +17,6 @@ public class FaseFragment4 extends Fragment {
 
     TouchEventView tev_animation_4;
     TextView tv_information_4;
-//    ImageView iv_source_4;
     ArrayList<HitDraw> points_toque;
 
     @Override
@@ -26,22 +25,9 @@ public class FaseFragment4 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fase4, container, false);
 
         tv_information_4 = (TextView) view.findViewById(R.id.tv_information_4);
-//        iv_source_4 = (ImageView) view.findViewById(R.id.iv_source_4);
         tev_animation_4 = (TouchEventView) view.findViewById(R.id.tev_animation_4);
         tev_animation_4.setFlag_show_points(false);
 
-//        Bitmap bm1 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_1);
-//        Bitmap bm2 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_2);
-//        Bitmap bm3 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_3);
-//        Bitmap bm4 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_4);
-//        Bitmap bm5 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_5);
-//        Bitmap bm6 = BitmapFactory.decodeResource(view.getResources(),
-//                R.drawable.together_6);
         points_toque = new ArrayList<>();
 
         points_toque.add(new HitDraw(100, 480, 15, null));

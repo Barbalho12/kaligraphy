@@ -22,7 +22,6 @@ import static android.content.ContentValues.TAG;
 public class UserManager implements Serializable {
 
     private List<User> users;
-//    private Context context;
     private final String fileName = "UserManager_save.txt";
 
 
@@ -35,7 +34,6 @@ public class UserManager implements Serializable {
         }catch (Exception erro){
 
         }
-
     }
 
 
@@ -74,12 +72,15 @@ public class UserManager implements Serializable {
         return null;
     }
 
+    public void save(Context context) {
+        save(context, fileName, this);
+    }
+
     public boolean save(Context context, String fileName, UserManager userManager) {
 
         try {
             FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-//            Log.v(TAG, userManager.getActiveUser().getNome()+" Salvo ");
             os.writeObject(userManager);
             os.close();
             fos.close();
@@ -128,21 +129,4 @@ public class UserManager implements Serializable {
         }
         return false;
     }
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        UserManager that = (UserManager) o;
-//
-//        if (!users.equals(that.users)) return false;
-//        return fileName.equals(that.fileName);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = users.hashCode();
-//        result = 31 * result + fileName.hashCode();
-//        return result;
-//    }
 }
