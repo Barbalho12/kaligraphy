@@ -50,6 +50,7 @@ public class CadastrarActivity extends AppCompatActivity {
                         alert("Usuário cadastrado com sucesso!");
                         Intent intent = new Intent(CadastrarActivity.this, InicialAllActivity.class);
                         startActivity(intent);
+                        finish();
                     }else{
                         alert("Usuário Já existe");
                     }

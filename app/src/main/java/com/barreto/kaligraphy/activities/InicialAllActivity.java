@@ -132,9 +132,24 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
                                     int position, long id) {
 //                Toast.makeText(getApplicationContext(),
 //                        "Clicou no item " + position, Toast.LENGTH_LONG).show();
+                if(position==0){
+                    Intent intent = new Intent(InicialAllActivity.this, MainActivity.class);
+                    startActivity(intent);
+//                    finish();
+                }else{
+                    AlertDialog alertDialog = new AlertDialog.Builder(InicialAllActivity.this).create();
+                    alertDialog.setTitle("Alerta");
+                    alertDialog.setMessage("Não implementado");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
 
-                Intent intent = new Intent(InicialAllActivity.this, MainActivity.class);
-                startActivity(intent);
+
             }
         });
 
@@ -213,8 +228,6 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_inicial_all, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
@@ -266,25 +279,6 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    private static final int REQ_SELECT_PHOTO = 1;
-//    private static final int REQ_START_SHARE = 2;
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -302,8 +296,6 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
             startActivity(sendIntent);
 
         } else if (id == R.id.nav_sair) {
-//            finish();
-//            finishAffinity();
             userManager.setInActiveUser(getApplicationContext());
             Intent intent = new Intent(getApplicationContext(), StartActivity.class);
             startActivity(intent);
@@ -315,19 +307,4 @@ public class InicialAllActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-//        navigationView.getMenu().getItem(0).setTitle("Exercícios Realizados: "+userManager.getActiveUser().getNumberExercRealizados());
-//        navigationView.getMenu().getItem(1).setTitle("Exercícios vizualizados: "+userManager.getActiveUser().getNumberExercVistos());
-//        navigationView.getMenu().getItem(2).setTitle("Kanjis Vistos: "+userManager.getActiveUser().getKanjis_vistos());
-
-//        if(requestCode == REQ_SELECT_PHOTO) {
-//            if(resultCode == RESULT_OK) {
-//
-//            }
-//        }
-    }
 }
